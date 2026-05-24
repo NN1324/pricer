@@ -6,7 +6,7 @@ import './App.css'
 const STORAGE_KEY      = 'pricer-v1-items'
 const ANTHROPIC_STORE  = 'pricer-v1-apikey'
 const SERPER_STORE     = 'pricer-v1-serperkey'
-const CLAUDE_MODEL     = 'claude-sonnet-4-20250514'
+const CLAUDE_MODEL     = 'const CLAUDE_MODEL = 'claude-sonnet-4-5'
 
 const IVA_RATES = [
   { value: 0,  label: '0% — Exento',        color: '#7a7570', desc: 'Productos exentos' },
