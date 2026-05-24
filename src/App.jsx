@@ -36,14 +36,13 @@ async function fileToBase64(file) {
 }
 
 async function callClaude(apiKey, messages, system='') {
-  const r = await fetch('https://api.anthropic.com/v1/messages', {
+  const r = await fetch('/api/claude', {
     method:'POST',
-    headers:{ 'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true' },
-    body: JSON.stringify({ model:CLAUDE_MODEL, max_tokens:2000, system, messages })
+    headers:{'Content-Type':'application/json','x-api-key':apiKey},
+    body: JSON.stringify({model:CLAUDE_MODEL,max_tokens:2000,system,messages})
   })
-  if (!r.ok) { const e=await r.json().catch(()=>{}); throw new Error(e?.error?.message||`Error ${r.status}`) }
-  const d = await r.json()
-  return d.content?.map(b=>b.text||'').join('')||''
+  if(!r.ok){const e=await r.json().catch(()=>{});throw new Error(e?.error?.message||`Error ${r.status}`)}
+  const d=await r.json();return d.content?.map(b=>b.text||'').join('')||''
 }
 
 async function serperSearch(serperKey, query) {
